@@ -13,9 +13,16 @@ public class MummyAgent : Agent
         3. 보상(Reward)
     */
 
+    [SerializeField] private Transform tr;
+    [SerializeField] private Rigidbody rb;
+    [SerializeField] private Transform targetTr;
+
     // 초기화 작업을 위한 한번만 호출되는 메소드
     public override void Initialize()
     {
+        tr = GetComponent<Transform>();
+        rb = GetComponent<Rigidbody>();
+        targetTr = transform.root.Find("Target").GetComponent<Transform>();
     }
 
     // 학습(Episode)이 시작될때 마다 호출되는 메소드
