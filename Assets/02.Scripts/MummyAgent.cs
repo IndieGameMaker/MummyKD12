@@ -19,12 +19,20 @@ public class MummyAgent : Agent
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Transform targetTr;
 
+    public Material goodMt, badMt;
+    private Material originMt;
+    private Renderer floorRd;   // 바닦의 렌더러
+
     // 초기화 작업을 위한 한번만 호출되는 메소드
     public override void Initialize()
     {
         tr = GetComponent<Transform>();
         rb = GetComponent<Rigidbody>();
         targetTr = transform.root.Find("Target").GetComponent<Transform>();
+        floorRd = tr.root.Find("Plane").GetComponent<MeshRenderer>();
+        originMt = floorRd.material;
+
+        MaxStep = 1000;
     }
 
     // 학습(Episode)이 시작될때 마다 호출되는 메소드
