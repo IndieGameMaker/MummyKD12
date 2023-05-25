@@ -33,4 +33,9 @@ public class MummyAgent : Agent
     {
     }
 
+    // 개발자가 직접 명령을 내릴때 사용하는 메소드
+    public override void Heuristic(in ActionBuffers actionsOut)
+    {
+    }
+
 }
