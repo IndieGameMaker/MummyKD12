@@ -39,7 +39,7 @@ public class MummyAgent : Agent
         tr.localPosition = pos;
 
         Vector3 targetPos = new Vector3(Random.Range(-4.0f, 4.0f)
-                                , 0.0f
+                                , 0.5f
                                 , Random.Range(-4.0f, 4.0f));
         targetTr.localPosition = targetPos;
 
@@ -49,16 +49,45 @@ public class MummyAgent : Agent
     // 주변환경을 관측 & 브레인에 전달하는 메소드
     public override void CollectObservations(VectorSensor sensor)
     {
+        sensor.AddObservation(targetTr.localPosition); // 3 (x, y, z)
+        sensor.AddObservation(tr.localPosition);       // 3 (x, y, z)
+        sensor.AddObservation(rb.velocity.x);          // 1 (x)
+        sensor.AddObservation(rb.velocity.z);          // 1 (z)
     }
 
     // 브레인(정책:Policy)에게서 전달받은 명령을 실행하는 메소드
     public override void OnActionReceived(ActionBuffers actions)
     {
+        /*
+            연속적인 수치 (Continuous) : -1.0f ~ 0.0f ~ +1.0f
+            이산 수치 (Discrete) : -1.0f, 0.0f, +1.0f
+        */
+        // 연속 수치로 값을 송수신
+        var _action = actions.ContinuousActions;
+
+        // 에이전트 이동
+        /*
+            전진/후진 = Input.GetAxis("Vertical") => actions[0]
+            왼쪽/오른쪽 = Input.GetAxis("Horizontal") => actions[1]
+        */
+
+        Vector3 dir = (Vector3.forward * _action[0]) + (Vector3.right * _action[1]);
+        rb.AddForce(dir.normalized * 20.0f);
+
+        // 지속적인 움직임을 유도하기 위해 마이너스 리워드
+        SetReward(-0.001f);
     }
 
     // 개발자가 직접 명령을 내릴때 사용하는 메소드
     public override void Heuristic(in ActionBuffers actionsOut)
     {
+        // 키보드 입력값
+        var _action = actionsOut.ContinuousActions;
+
+        // 전/후진
+        _action[0] = Input.GetAxis("Vertical"); // UP/Down -1.0f ~ 1.0f
+        // 좌/우
+        _action[1] = Input.GetAxis("Horizontal");
     }
 
 }
