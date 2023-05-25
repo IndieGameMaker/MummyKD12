@@ -103,6 +103,7 @@ public class MummyAgent : Agent
         if (coll.collider.CompareTag("DEAD_ZONE"))
         {
             SetReward(-1.0f);
+            StartCoroutine(this.ChangeColor(badMt));
             // 학습 종료
             EndEpisode();
         }
@@ -110,8 +111,19 @@ public class MummyAgent : Agent
         if (coll.collider.CompareTag("TARGET"))
         {
             SetReward(+1.0f);
+            StartCoroutine(this.ChangeColor(goodMt));
             EndEpisode();
         }
+    }
+
+    IEnumerator ChangeColor(Material changeMt)
+    {
+        //바닦 머리리얼 변경
+        floorRd.material = changeMt;
+
+        yield return new WaitForSeconds(0.2f);
+        //원래 머티리얼로 환원
+        floorRd.material = originMt;
     }
 
 }
