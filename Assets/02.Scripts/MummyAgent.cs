@@ -5,6 +5,8 @@ using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
 using Unity.MLAgents.Actuators;
 
+using Random = UnityEngine.Random;
+
 public class MummyAgent : Agent
 {
     /*
@@ -28,6 +30,20 @@ public class MummyAgent : Agent
     // 학습(Episode)이 시작될때 마다 호출되는 메소드
     public override void OnEpisodeBegin()
     {
+        // 물리력 초기화
+        rb.velocity = rb.angularVelocity = Vector3.zero;
+        // 에이전트의 위치를 지정(불규칙하게)
+        Vector3 pos = new Vector3(Random.Range(-4.0f, 4.0f)
+                                , 0.0f
+                                , Random.Range(-4.0f, 4.0f));
+        tr.localPosition = pos;
+
+        Vector3 targetPos = new Vector3(Random.Range(-4.0f, 4.0f)
+                                , 0.0f
+                                , Random.Range(-4.0f, 4.0f));
+        targetTr.localPosition = targetPos;
+
+
     }
 
     // 주변환경을 관측 & 브레인에 전달하는 메소드
