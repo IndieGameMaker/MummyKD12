@@ -7,15 +7,29 @@ using Unity.MLAgents.Sensors;
 
 public class MummyRay : Agent
 {
-    // Start is called before the first frame update
-    void Start()
-    {
+    private Transform tr;
+    private Rigidbody rb;
 
+    private StageManager stageManager;
+
+    public override void Initialize()
+    {
+        MaxStep = 5000;
+
+        tr = GetComponent<Transform>();
+        rb = GetComponent<Rigidbody>();
+        stageManager = tr.root.GetComponent<StageManager>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void OnEpisodeBegin()
     {
+    }
 
+    public override void OnActionReceived(ActionBuffers actions)
+    {
+    }
+
+    public override void Heuristic(in ActionBuffers actionsOut)
+    {
     }
 }
