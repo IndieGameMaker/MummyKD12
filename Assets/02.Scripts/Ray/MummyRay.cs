@@ -14,7 +14,7 @@ public class MummyRay : Agent
 
     public override void Initialize()
     {
-        MaxStep = 100;
+        MaxStep = 5000;
 
         tr = GetComponent<Transform>();
         rb = GetComponent<Rigidbody>();
@@ -41,5 +41,15 @@ public class MummyRay : Agent
 
     public override void Heuristic(in ActionBuffers actionsOut)
     {
+        /* 
+            이산 수치 Discreate Type
+            1. 정지/전진/후진  (Null, W , S) (0:정지, 1:전진, 2:후진)
+            2. 무회전/왼쪽회전/오른쪽회전 (Null, A, D) (0, 1, 2)
+        
+            Branch 갯수 2
+            Branch[0], size 3
+            Branch[1], size 3
+        */
+
     }
 }
