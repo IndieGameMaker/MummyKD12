@@ -14,7 +14,7 @@ public class MummyRay : Agent
 
     public override void Initialize()
     {
-        MaxStep = 5000;
+        MaxStep = 100;
 
         tr = GetComponent<Transform>();
         rb = GetComponent<Rigidbody>();
