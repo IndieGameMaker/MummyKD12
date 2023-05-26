@@ -18,7 +18,7 @@ public class BallCreater : MonoBehaviour
     {
         while (!isFinish)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1.0f);
             int index = Random.Range(0, points.Length);
             Instantiate(ballPrefab, points[index].position, points[index].rotation, transform);
         }
