@@ -9,6 +9,7 @@ TagManager:
   - GOOD_ITEM
   - BAD_ITEM
   - WALL
+  - BALL
   layers:
   - Default
   - TransparentFX
