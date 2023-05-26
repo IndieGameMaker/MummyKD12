@@ -116,9 +116,7 @@ public class MummyRay : Agent
             AddReward(+1.0f);
             rb.velocity = rb.angularVelocity = Vector3.zero;
             Destroy(coll.gameObject);
-            ++sumGoodItem;
-
-            if (sumGoodItem >= stageManager.goodItemCount) EndEpisode();
+            if (++sumGoodItem >= stageManager.goodItemCount) EndEpisode();
         }
         if (coll.collider.CompareTag("BAD_ITEM"))
         {
