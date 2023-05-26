@@ -173,6 +173,8 @@ MonoBehaviour:
   badItem: {fileID: 8519551312200712612, guid: 38a440cb8237843d4b78ce720adcde42, type: 3}
   goodItemCount: 30
   badItemCount: 20
+  goodItemList: []
+  badItemList: []
 --- !u!1 &496947888
 GameObject:
   m_ObjectHideFlags: 0
