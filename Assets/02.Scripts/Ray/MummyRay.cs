@@ -40,7 +40,32 @@ public class MummyRay : Agent
     {
         var action = actions.DiscreteActions;
 
-        Debug.Log($"[0]={action[0]}, [1]={action[1]}");
+        // Debug.Log($"[0]={action[0]}, [1]={action[1]}");
+
+        // 이동방향 벡터
+        Vector3 dir = Vector3.zero;
+        // 회전방향 벡터
+        Vector3 rot = Vector3.zero;
+
+        // Branch[0]
+        switch (action[0])
+        {
+            case 1: dir = tr.forward; break;
+            case 2: dir = -tr.forward; break;
+        }
+
+        // Brach[1]
+        switch (action[1])
+        {
+            case 1: rot = -tr.up; break;
+            case 2: rot = tr.up; break;
+        }
+
+
+        tr.Rotate(rot, Time.fixedDeltaTime * 200.0f);
+        rb.AddForce(dir * 1.5f, ForceMode.VelocityChange);
+
+        AddReward(-1 / (float)MaxStep); // -1/5000 = 0.005f
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
