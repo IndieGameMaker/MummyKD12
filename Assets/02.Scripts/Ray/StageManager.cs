@@ -26,14 +26,16 @@ public class StageManager : MonoBehaviour
                                     , Random.Range(-40.0f, 40.0f));
 
             // 불규칙한 회전 생성
+            Quaternion rot = Quaternion.Euler(Vector3.up * Random.Range(0, 360));
 
+            goodItemList.Add(Instantiate(goodItem, pos, rot, transform));
         }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        InitStage();
     }
 
     // Update is called once per frame
