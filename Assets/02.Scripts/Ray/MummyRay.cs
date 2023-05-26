@@ -23,6 +23,16 @@ public class MummyRay : Agent
 
     public override void OnEpisodeBegin()
     {
+        stageManager.InitStage();
+        // 물리엔진 초기화
+        rb.velocity = rb.angularVelocity = Vector3.zero;
+
+        // Agents 위치 초기화
+        Vector3 pos = new Vector3(Random.Range(-20.0f, 20.0f)
+                                , 0.0f
+                                , Random.Range(-20.0f, 20.0f));
+        tr.localPosition = pos;
+        tr.localRotation = Quaternion.Euler(Vector3.up * Random.Range(0, 360));
     }
 
     public override void OnActionReceived(ActionBuffers actions)
