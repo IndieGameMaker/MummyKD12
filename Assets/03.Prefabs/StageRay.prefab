@@ -611,7 +611,7 @@ MonoBehaviour:
   goodItem: {fileID: 5003061426320304140, guid: af07d25ca298b4e1782a9bd38a73a5db, type: 3}
   badItem: {fileID: 8519551312200712612, guid: 38a440cb8237843d4b78ce720adcde42, type: 3}
   goodItemCount: 30
-  badItemCount: 20
+  badItemCount: 10
   goodItemList: []
   badItemList: []
 --- !u!1001 &1856649311723743108

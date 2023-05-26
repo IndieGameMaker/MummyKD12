@@ -12,6 +12,7 @@ public class MummyRay : Agent
     private Rigidbody rb;
 
     private StageManager stageManager;
+    private int sumGoodItem;
 
     public override void Initialize()
     {
@@ -24,6 +25,8 @@ public class MummyRay : Agent
 
     public override void OnEpisodeBegin()
     {
+        sumGoodItem = 0;
+
         stageManager.InitStage();
         // 물리엔진 초기화
         rb.velocity = rb.angularVelocity = Vector3.zero;
@@ -113,6 +116,9 @@ public class MummyRay : Agent
             AddReward(+1.0f);
             rb.velocity = rb.angularVelocity = Vector3.zero;
             Destroy(coll.gameObject);
+            ++sumGoodItem;
+
+            if (sumGoodItem >= stageManager.goodItemCount) EndEpisode();
         }
         if (coll.collider.CompareTag("BAD_ITEM"))
         {
