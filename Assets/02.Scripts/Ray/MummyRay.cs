@@ -51,5 +51,29 @@ public class MummyRay : Agent
             Branch[1], size 3
         */
 
+        var actions = actionsOut.DiscreteActions;
+        actions.Clear();
+
+        // 정지 / 전진 / 후진 : Branch 0 (0, 1, 2)
+        if (Input.GetKey(KeyCode.W))
+        {
+            actions[0] = 1; // 전진
+        }
+
+        if (Input.GetKey(KeyCode.S))
+        {
+            actions[0] = 2; // 후진
+        }
+
+        // 좌/우 회전 : Branch[1] (0, 1, 2)
+        if (Input.GetKey(KeyCode.A))
+        {
+            actions[1] = 1; // 왼쪽 회전
+        }
+
+        if (Input.GetKey(KeyCode.D))
+        {
+            actions[1] = 2; // 오른쪽 회전
+        }
     }
 }
