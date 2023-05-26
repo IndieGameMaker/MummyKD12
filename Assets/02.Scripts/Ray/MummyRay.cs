@@ -5,6 +5,7 @@ using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
 
+[RequireComponent(typeof(DecisionRequester))]
 public class MummyRay : Agent
 {
     private Transform tr;
@@ -37,6 +38,9 @@ public class MummyRay : Agent
 
     public override void OnActionReceived(ActionBuffers actions)
     {
+        var action = actions.DiscreteActions;
+
+        Debug.Log($"[0]={action[0]}, [1]={action[1]}");
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
