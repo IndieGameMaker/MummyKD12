@@ -169,6 +169,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c214d2a54f094109969895b251dbd07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goodItem: {fileID: 5003061426320304140, guid: af07d25ca298b4e1782a9bd38a73a5db, type: 3}
+  badItem: {fileID: 8519551312200712612, guid: 38a440cb8237843d4b78ce720adcde42, type: 3}
+  goodItemCount: 30
+  badItemCount: 20
 --- !u!1 &496947888
 GameObject:
   m_ObjectHideFlags: 0
